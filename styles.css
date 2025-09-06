@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter, sans-serif";
+}
+
+body {
+    background-color: #648DE5;
+    color: #011627;
+}
+
+/* title */
+
+h1, p {
+    text-align: center;
+    font-size: 3.5rem;
+    margin: 1rem;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+/* csv upload */
+
+#upload-wrapper {
+    display: flex;
+    background-color: #083D77;
+    width: max-content;
+    margin-inline: auto;
+    border-radius: 1rem;
+    align-items: center;
+    border: 2px solid #f6f8f6;
+}
+
+#csv-upload {
+    margin-inline: auto;
+    font-size: 1rem;
+    color: #f6f8f6;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+#csv-upload::file-selector-button {
+    background-color: #ff5f00;
+    color: #f6f8f6;
+    padding: 0.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    border: 2px solid #f6f8f6;
+    border-radius: 1rem;
+    transition: color 500ms ease, background-color 500ms ease;
+}
+
+#csv-upload:hover::file-selector-button {
+    background-color: #f6f8f6;
+    color: #ff5f00;
+}
+
+#clear-all-button {
+    color: #f6f8f6;
+    cursor: pointer;
+    transition: color 500ms ease;
+    font-size: 1.5rem;
+}
+
+#clear-all-button:hover {
+    color: #ff5f00;
+}
+
+/* main grid */
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 55px 1fr;
+    align-items: center;
+    margin-inline: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+/* each name (left) */
+
+.person {
+    margin: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    transition: color 500ms;
+    width: max-content;
+    margin-left: auto;
+    color: #013220;
+}
+
+.person::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #013220;
+    width: 100%;
+    height: 3px;
+    transition: transform 500ms ease, background-color 500ms ease;
+    transform: scaleX(0);
+}
+
+.person:hover::after {
+    transform: scaleX(1);
+    background-color: #f6f8f6;
+}
+
+.person:hover {
+    color: #f6f8f6;
+}
+
+/* each name (right) */
+
+.person2 {
+    margin: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    transition: color 500ms;
+    width: max-content;
+    margin-right: auto;
+    color: #860111;
+}
+
+.person2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #860111;
+    width: 100%;
+    height: 3px;
+    transition: transform 500ms ease, background-color 500ms ease;
+    transform: scaleX(0);
+}
+
+.person2:hover::after {
+    transform: scaleX(1);
+    background-color: #f6f8f6;
+}
+
+.person2:hover {
+    color: #f6f8f6;
+}
+
+/* people containers */
+
+
+.people-container {
+    border: 5px solid #f6f8f6;
+    border-radius: 1rem;
+    min-height: 100px;
+    font-size: 1.2rem;
+    display: grid;
+}
+
+#people {
+    background-color: #52aa98;
+    text-align: right;
+    padding-right: 10px;
+    margin-left: 1rem;
+}
+
+#people2 {
+    background-color: #ff3366;
+    padding-left: 10px;
+    margin-right: 1rem;
+}
+
+
+/* labels */
+
+.labels {
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+}
+
+#people1-label {
+    text-align: right;
+}
+
+#people2-label {
+    text-align: left;
+}
+
+.people-label {
+    height: 100%;
+    width: 40%;
+    margin-top: 2rem;
+}
+
+/* misc */
+
+#arrows {
+    font-size: 2rem;
+    text-align: center;
+    line-height: 38px;
+    transform: translateY(-3px);
+}
+
+.hidden {
+    display: none;
+}

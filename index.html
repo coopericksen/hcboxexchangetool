@@ -9,5 +9,21 @@
 </head>
 <body>
     <h1>Homecoming Box Exchange Tool</h1>
+    <p>By: Cooper Ericksen</p>
+    <div id="upload-wrapper">
+        <input id="csv-upload" type="file" accept=".csv">
+        <p id="clear-all-button" onclick="clearAll();">X</p>
+    </div>
+    <p class="hidden" style="text-align: center;">Click a name to preview & send email.</p>
+    <div class="labels hidden">
+        <h2 id="people1-label" class="people-label">Underclassmen</h2>
+        <br>
+        <h2 id="people2-label" class="people-label">Upperclassmen</h2>
+    </div>
+    <main id="main" class="hidden">
+        <div id="people" class="people-container"></div>
+        <div id="arrows"></div>
+        <div id="people2" class="people-container"></div>
+    </main>
 </body>
 </html>
