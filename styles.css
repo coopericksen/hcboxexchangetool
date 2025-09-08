@@ -78,6 +78,7 @@ main {
     margin-inline: 1rem;
     padding: 1rem;
     border-radius: 1rem;
+    row-gap: 1rem;
 }
 
 /* each name (left) */
@@ -89,7 +90,7 @@ main {
     transition: color 500ms;
     width: max-content;
     margin-left: auto;
-    color: #013220;
+    color: #011627;
 }
 
 .person::after {
@@ -122,7 +123,7 @@ main {
     transition: color 500ms;
     width: max-content;
     margin-right: auto;
-    color: #860111;
+    color: #011627;
 }
 
 .person2::after {
@@ -157,17 +158,23 @@ main {
     display: grid;
 }
 
-#people {
-    background-color: #52aa98;
+#people, #people3 {
     text-align: right;
     padding-right: 10px;
     margin-left: 1rem;
 }
 
-#people2 {
-    background-color: #ff3366;
+#people, #people4 {
+    background-color: #52aa98;
+}
+
+#people2, #people4 {
     padding-left: 10px;
     margin-right: 1rem;
+}
+
+#people2, #people3 {
+    background-color: #ff3366;
 }
 
 
@@ -181,27 +188,62 @@ main {
 
 #people1-label {
     text-align: right;
+    width: max-content;
+    background-color: #52aa98;
 }
 
 #people2-label {
     text-align: left;
+    width: max-content;
+    background-color: #ff3366;
 }
 
 .people-label {
     height: 100%;
     width: 40%;
     margin-top: 2rem;
+    border-radius: 1rem;
+    padding: 0.5rem;
 }
 
 /* misc */
 
-#arrows {
+#arrows, #arrows2 {
     font-size: 2rem;
     text-align: center;
     line-height: 38px;
-    transform: translateY(-3px);
+    transform: translateY(-35px);
+}
+
+.shuffle-button {
+    width: 10%;
+    padding: 0.5rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: #f6f8f6;
+    border: 2px solid #083D77;
+    margin-inline: auto;
+    cursor: pointer;
+}
+
+.shuffle-button:hover {
+    background-color: #083D77;
+    border: 2px solid #f6f8f6;
+    color: #f6f8f6;
+}
+
+#repo-link {
+    background-color: #f6f8f6;
+    color: #083D77;
+    text-align: center;
+    margin-top: 2rem;
+    margin-inline: auto;
+    display: block;
+    width: max-content;
+    border-radius: 1rem;
+    padding: 0.5rem;
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
