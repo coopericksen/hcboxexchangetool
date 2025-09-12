@@ -46,10 +46,37 @@ csvUpload.addEventListener("change", (e) => {
         }
 
         assignMatches();
+        checkMatches();
     };
     reader.readAsText(csvFile);
 
 });
+
+function checkMatches() {
+    for (let i = 0; i < peopleObjs.length; i++) {
+        let that = peopleObjs[i];
+
+        if (that.assigned.assigned == that) {
+            that.element.classList.add("person-error");
+            that.element2.classList.add("person-error");
+        } else {
+            that.element.classList.remove("person-error");
+            that.element2.classList.remove("person-error");
+        }
+    }
+
+    for (let i = 0; i < peopleObjs2.length; i++) {
+        let that = peopleObjs2[i];
+
+        if (that.assigned.assigned == that) {
+            that.element.classList.add("person-error");
+            that.element2.classList.add("person-error");
+        } else {
+            that.element.classList.remove("person-error");
+            that.element2.classList.remove("person-error");
+        }
+    }
+}
 
 function checkGroupSize() {
     let lowerclass = peopleObjs.length;
@@ -109,7 +136,7 @@ function parseCSV(text) {
 }
 
 class Person {
-    constructor(timestamp, email, drinks, snacks, allergies, favcolor, other, fname, lname, grade) {
+    constructor(timestamp, email, drinks, snacks, favcolor, other, allergies, fname, lname, grade) {
         this.email = email;
         this.fname = fname;
         this.lname = lname;
@@ -174,7 +201,14 @@ class Person {
 
 function emailFor(obj) {
     const subject = "Homecoming Box Exchange 2025";
-    const body = `Hello ${obj.fname},\n\nThank you for choosing to participate in the 2025 Homecoming Box Exchange.\n\nYou have been designated to create a box for ${obj.assigned.fname} ${obj.assigned.lname} of the ${obj.assigned.grade}th grade.\n\n${obj.assigned.fname}'s favorite drinks are: ${obj.assigned.drinks}\n${obj.assigned.fname}'s favorite snacks & candy are: ${obj.assigned.snacks}\n\nThe box exchange will take place on Friday, September 26, 2025. Your goal should be to create a fun, themed box that has a value of at least $25. If you need assistance with financing your box, please email either Mrs. Smith or Mr. Matthews.\n\nPlease put effort into making a box that you would be happy with receiving.\n\nHappy box building and please do enjoy Homecoming Week!\n\nSincerely,\n\nNHS Leadership Team`
+    let allergies;
+    if (obj.assigned.allergies == "") {
+        allergies = `\n${obj.assigned.fname} is not allergic to anything.\n`;
+    } else {
+        allergies = `\n${obj.assigned.fname} is allergic to or requested to not receive: ${obj.assigned.allergies}\nSo please avoid putting these items in their box.\n`;
+    }
+
+    const body = `Hello ${obj.fname},\n\nThank you for choosing to participate in the 2025 Homecoming Box Exchange.\n\nYou have been designated to create a box for ${obj.assigned.fname} ${obj.assigned.lname} of the ${obj.assigned.grade}th grade.\n\n${obj.assigned.fname}'s favorite drinks are: ${obj.assigned.drinks}\n${obj.assigned.fname}'s favorite snacks & candy are: ${obj.assigned.snacks}\n${allergies}\nThe box exchange will take place on Friday, September 26, 2025. Your goal should be to create a fun, themed box that has a value of at least $25. If you need assistance with financing your box, please email either Mrs. Smith or Mr. Matthews.\n\nPlease put effort into making a box that you would be happy with receiving.\n\nHappy box building and please do enjoy Homecoming Week!\n\nSincerely,\n\nNHS Leadership Team`
 
     window.open(`https://mail.google.com/mail/?view=cm&to=${obj.email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
 }
@@ -230,6 +264,7 @@ function shuffleContainer(container) {
 
     addButtonToContainer(container);
     assignMatches();
+    checkMatches();
 }
 
 function addButtonToContainer(container) {

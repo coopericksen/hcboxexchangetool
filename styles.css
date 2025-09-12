@@ -177,6 +177,12 @@ main {
     background-color: #ff3366;
 }
 
+.person-error {
+    text-decoration: line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 2px;
+}
+
 
 /* labels */
 
