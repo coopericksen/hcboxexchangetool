@@ -253,3 +253,7 @@ main {
 .hidden {
     display: none !important;
 }
+
+.red {
+    background-color: red;
+}

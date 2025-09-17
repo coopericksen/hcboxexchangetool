@@ -32,6 +32,7 @@ csvUpload.addEventListener("change", (e) => {
             let person = new Person(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9] - "\r");
         }
 
+        console.log(data);
         checkGroupSize();
 
         addButtonToContainer(peopleContainer);
@@ -82,9 +83,15 @@ function checkGroupSize() {
     let lowerclass = peopleObjs.length;
     let upperclass = peopleObjs2.length;
     let difference = Math.abs(upperclass - lowerclass);
+    console.log(upperclass)
+    console.log(lowerclass)
+    console.log(difference)
     if (difference % 2 != 0) {
         console.log("Odd number of participants")
+        document.body.classList.add("red");
         return;
+    } else {
+        document.body.classList.remove("red");
     }
 
     if (upperclass > lowerclass) {
@@ -201,14 +208,21 @@ class Person {
 
 function emailFor(obj) {
     const subject = "Homecoming Box Exchange 2025";
-    let allergies;
+    let allergies = "";
     if (obj.assigned.allergies == "") {
         allergies = `\n${obj.assigned.fname} is not allergic to anything.\n`;
     } else {
         allergies = `\n${obj.assigned.fname} is allergic to or requested to not receive: ${obj.assigned.allergies}\nSo please avoid putting these items in their box.\n`;
     }
 
-    const body = `Hello ${obj.fname},\n\nThank you for choosing to participate in the 2025 Homecoming Box Exchange.\n\nYou have been designated to create a box for ${obj.assigned.fname} ${obj.assigned.lname} of the ${obj.assigned.grade}th grade.\n\n${obj.assigned.fname}'s favorite drinks are: ${obj.assigned.drinks}\n${obj.assigned.fname}'s favorite snacks & candy are: ${obj.assigned.snacks}\n${allergies}\nThe box exchange will take place on Friday, September 26, 2025. Your goal should be to create a fun, themed box that has a value of at least $25. If you need assistance with financing your box, please email either Mrs. Smith or Mr. Matthews.\n\nPlease put effort into making a box that you would be happy with receiving.\n\nHappy box building and please do enjoy Homecoming Week!\n\nSincerely,\n\nNHS Leadership Team`
+    let other = "";
+    if (obj.assigned.other != "") {
+        other = `\n${obj.assigned.fname} also likes: ${obj.assigned.other}\nSo feel free to include these items in their box.`;
+    }
+
+    let br = "-------------------------------------------------------------------------------------------\n";
+
+    const body = `Hello ${obj.fname},\n\nThank you for choosing to participate in the 2025 Homecoming Box Exchange.\n\nYou have been designated to create a box for ${obj.assigned.fname} ${obj.assigned.lname} of the ${obj.assigned.grade}th grade.\n\n${br}${obj.assigned.fname}'s favorite drinks are: ${obj.assigned.drinks}\n${obj.assigned.fname}'s favorite snacks & candy are: ${obj.assigned.snacks}\n${other}\n${allergies}${br}\nThe box exchange will take place on Friday, September 26, 2025. Your goal should be to create a fun, themed box that has a value of at least $25. If you need assistance with financing your box, please email either Mrs. Smith or Mr. Matthews.\n\nPlease put effort into making a box that you would be happy with receiving.\n\nHappy box building and please do enjoy Homecoming Week!\n\nSincerely,\n\nNHS Leadership Team`
 
     window.open(`https://mail.google.com/mail/?view=cm&to=${obj.email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
 }
@@ -283,6 +297,7 @@ function clearAll() {
     peopleContainer2.innerHTML = "";
     peopleContainer3.innerHTML = "";
     peopleContainer4.innerHTML = "";
+    document.body.classList.remove("red");
 
     let len = peopleObjs.length
     for (let i = 0; i < len; i++) {
@@ -291,6 +306,14 @@ function clearAll() {
     len = peopleObjs2.length
     for (let i = 0; i < len; i++) {
         peopleObjs2.pop();
+    }
+    len = peopleObjs3.length
+    for (let i = 0; i < len; i++) {
+        peopleObjs3.pop();
+    }
+    len = peopleObjs4.length
+    for (let i = 0; i < len; i++) {
+        peopleObjs4.pop();
     }
 
     arrowsContainer.innerHTML = "";
